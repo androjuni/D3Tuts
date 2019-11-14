@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hello World</title>
+  <script type="text/javascript" src="d3.min.js"></script>
+  <script type="text/javascript" src="helpers.js"></script>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+  // SVG Container
+
+  var data = generateRandomData();
+
+  var svgContainer = d3.select("body").append("svg")
+    .attr("width", 1000)
+    .attr("height", 200);
+
+// ordered
+var color = d3.scaleOrdinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+  // Rectangle & Text & Color
+  for (var i in data) {
+    // svgContainer.append("rect")
+    //       .attr("x", (50 * i))
+    //       .attr("y", 100 - data[i].value)
+    //       .attr("width", 48)
+    //       .attr("height", data[i].value)
+    //       .attr("fill", color(i));
+
+    // svgContainer.append("text")
+    //       .attr("x", (50 * i))
+    //       .attr("y", 115)
+    //       .attr("width", 48)
+    //       .text(data[i].name)
+  }
+
+  
+  // var pie = d3.pie().value(function (d) {
+  //   return d.value;
+  // });
+
+  // // g is used to group objects, transform is used for positioning
+  // var g = svgContainer.append("g").attr("transform", "translate(" + 300 + "," + 100 + ")");
+  
+  // var arc = d3.arc()
+  //   .innerRadius(0)
+  //   .outerRadius(50);
+
+  // // add arcs inside group
+  // var arcs = g.selectAll("arc")
+  //   .data(pie(data))
+  //   .enter()
+  //   .append("g")
+  //   .attr("class", "arc")
+
+  // console.log(arcs);
+  // //Draw arc paths
+  // arcs.append("path")
+  //   .attr("fill", function (d, i) {
+  //     return color(i);
+  //   })
+  //   .attr("d", arc);
+
+  // console.log(pie(data));
+
+</script>
+
+</html>
