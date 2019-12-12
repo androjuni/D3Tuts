@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hello World</title>
-    <script type="text/javascript" src="d3.min.js"></script>
-  </head>
-  <body>
-    <p>Hello World!</p>
-    <p>Hello World!</p>
-    <p id="par1">Hello World!</p>
-  </body>
-  <script type="text/javascript">
-    // d3.select("p").style("color", "red");
-  </script>
+
+<head>
+  <title>Hello World</title>
+</head>
+
+<body>
+  <p>Hello World!</p>
+  <p>Hello World!</p>
+  <p id="par1">Hello World!</p>
+  <div id="chart"></div>
+</body>
+<script type="text/javascript" src="d3.min.js"></script>
+<script type="text/javascript">
+  d3.select("p")
+    .style("color", "red")
+    .style("font-size", "50px")
+    .transition().style("color", "green").duration(10000);
+
+  var svg = d3.select("#chart")
+    .append("svg")
+  
+  svg.append("rect")
+    .attr("x", 10)
+    .attr("y", 10)
+    .attr("width", 80)
+    .attr("height", 60)
+
+</script>
+
 </html>

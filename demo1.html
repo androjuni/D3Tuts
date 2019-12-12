@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
+    <style>
+        p {
+            font-size: 24pt;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+    </script>
+
     <title>Hello World</title>
-  </head>
-  <body>
-    <p>Hello World!</p>
+</head>
 
-    <!-- <svg width="50" height="50"> 
-      <rect x="0" y="0" width="50" height="50" fill="green" /> 
-    </svg>   -->
+<body>
+    <!-- groups! rotate this -->
+    <svg>
+        <g>
+            <rect x="10" y="20" height="50" width="75" fill="#006600" />
+            <text x="10" y="90">
+                Text</text>
+        </g>
+    </svg>
 
-    <!-- <svg width="50" height="50">
-      <polygon fill="yellow" stroke="blue" stroke-width="2"
-               points="05,30
-                       15,10
-                       25,30" />
-    </svg>    -->
-    
-  </body>
+    <!-- viewport and viewbox -->
+    <br>
+    <svg width="50" height="50" viewBox="0 0 100 20" preserveAspectRatio="none">
+        <ellipse cx="50" cy="50" rx="50" ry="50"></ellipse>
+    </svg>
+
+    <br>
+    <!-- defs -->
+    <svg>
+        <defs>
+            <linearGradient id="myLinearGradient1" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+                <stop offset="0%" stop-color="#00cc00" stop-opacity="1" />
+                <stop offset="100%" stop-color="#006600" stop-opacity="1" />
+            </linearGradient>
+        </defs>
+
+        <rect x="10" y="10" width="75" height="100" rx="10" ry="10" style="fill:url(#myLinearGradient1);
+                        stroke: #005000;
+                        stroke-width: 3;" />
+    </svg>
+
+</body>
+
 </html>

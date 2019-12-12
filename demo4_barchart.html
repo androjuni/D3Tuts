@@ -20,17 +20,17 @@
     .attr("height", 200);
 
 // ordered
-var color = d3.scaleOrdinal()
+  var color = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
   // Rectangle & Text & Color
   for (var i in data) {
-    // svgContainer.append("rect")
-    //       .attr("x", (50 * i))
-    //       .attr("y", 100 - data[i].value)
-    //       .attr("width", 48)
-    //       .attr("height", data[i].value)
-    //       .attr("fill", color(i));
+    svgContainer.append("rect")
+          .attr("x", (50 * i))
+          .attr("y", 100 - data[i].value)
+          .attr("width", 48)
+          .attr("height", data[i].value)
+          .attr("fill", color(i));
 
     // svgContainer.append("text")
     //       .attr("x", (50 * i))
