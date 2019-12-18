@@ -17,60 +17,57 @@
     var width = 500;
     var height = 500;
     padding = 40;
-    
-    var data1 = [[1, 42],[20, 14],[30, 23],[20, 10],[37, 60]];
-    var data2 = [[.17, .12],[.30, .84],[.44, .23],[.20, .10],[.50, .30]];
-    var data3 = [[1000, 3002],[4000, 1400],[3000, 2400],[8000, 2220],[4500, 8040]];
+    d3.csv("http://raw.githubusercontent.com/androjuni/D3Tuts/master/NationsGDPPopLife.csv").then(function (data) {
+        
+        for(var index in data) {
+            // convert to float
+            data[index].pop = parseFloat(data[index].pop);
+            data[index].gdpPercap = parseFloat(data[index].gdpPercap);
+            data[index].lifeExp = parseFloat(data[index].lifeExp);
+        }
 
-    // append the svg object to the body of the page
-    var svg = d3.select("#chart")
-        .append("svg")
-        .attr('width', width)
-        .attr('height', height) 
+        console.log(data);
 
-    // x axis scale
-    var x_scale = d3.scaleLinear()
-        .domain([d3.min(data1, function (d) { return d[0] }), 
-            d3.max(data1, function (d) { return d[0] })])
-        .range([ 0 + padding, width - padding ]);
+        // append the svg object to the body of the page
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr('width', width)
+            .attr('height', height)
 
-    // y axis scale
-    var y_scale = d3.scaleLinear()
-        .domain([d3.min(data1, function (d) { return d[1] }), 
-            d3.max(data1, function (d) { return d[1] })])
-        .range([ 0 + padding, height - padding ])
-        .nice();
+        // x axis scale
+        var x_scale = d3.scaleLinear()
+            .domain([d3.min(data, function (d) { return d.gdpPercap }),
+            d3.max(data, function (d) { return d.gdpPercap })])
+            .range([0 + padding, width - padding]);
 
-    // add dots
-    svg.append('g')
-        .selectAll("dot")
-        .data(data1)
-        .enter()
-        .append("circle")
-        .attr("cx", function (d) { return x_scale(d[0]); } )
-        .attr("cy", function (d) { return y_scale(d[1]); } )
-        .attr("r", 5)
-        .style("fill", "#00b3a2")
-    
-    // add labels
-    // svg.append('g')
-    //     .selectAll("labels")
-    //     .data(data1)
-    //     .enter()
-    //     .append("text")
-    //     .attr("x", function (d) { return x_scale(d[0]); } )
-    //     .attr("y", function (d) { return y_scale(d[1]); } )
-    //     .text((d) => { return '' + d[0] + ',' + d[1] })
+        // y axis scale
+        var y_scale = d3.scaleLinear()
+            .domain([d3.min(data, function (d) { return d.lifeExp }),
+            d3.max(data, function (d) { return d.lifeExp })])
+            .range([height - padding, 0 + padding]) // invert 
+            .nice();
 
-    // Add scales to axis
-    var x_axis = d3.axisBottom()
-                   .scale(x_scale);
+        // add dots
+        svg.append('g')
+            .selectAll("dot")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d) { return x_scale(d.gdpPercap); })
+            .attr("cy", function (d) { return y_scale(d.lifeExp); })
+            .attr("r", 3)
+            .style("fill", "navy")
+            .style("opacity", .5)
 
-    //Append group and insert axis
-    svg.append("g")
-       .attr("transform", "translate(0, " + (height - 40) +")")
-       .call(x_axis);
+        // Add scales to axis
+        var x_axis = d3.axisBottom()
+            .scale(x_scale);
 
+        //Append group and insert axis
+        svg.append("g")
+            .attr("transform", "translate(0, " + (height - 40) + ")")
+            .call(x_axis);
+    });
 </script>
 
 </html>
