@@ -12,6 +12,7 @@
   <div id="chart"></div>
 </body>
 <script type="text/javascript" src="d3.min.js"></script>
+
 <script type="text/javascript">
   d3.select("p")
     .style("color", "red")
@@ -26,6 +27,7 @@
     .attr("y", 10)
     .attr("width", 80)
     .attr("height", 60)
+    .transition().attr("width", "200").ease(d3.easeBounce).duration(3000)
 
 </script>
 

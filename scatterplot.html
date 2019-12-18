@@ -16,6 +16,7 @@
     // set the dimensions and margins of the graph
     var width = 500;
     var height = 500;
+    padding = 40;
     
     var data1 = [[1, 42],[20, 14],[30, 23],[20, 10],[37, 60]];
     var data2 = [[.17, .12],[.30, .84],[.44, .23],[.20, .10],[.50, .30]];
@@ -29,13 +30,16 @@
 
     // x axis scale
     var x_scale = d3.scaleLinear()
-        .domain([0, 100])
-        .range([ 0, width ]);
+        .domain([d3.min(data1, function (d) { return d[0] }), 
+            d3.max(data1, function (d) { return d[0] })])
+        .range([ 0 + padding, width - padding ]);
 
     // y axis scale
     var y_scale = d3.scaleLinear()
-        .domain([0, 100])
-        .range([ 0, height ]);
+        .domain([d3.min(data1, function (d) { return d[1] }), 
+            d3.max(data1, function (d) { return d[1] })])
+        .range([ 0 + padding, height - padding ])
+        .nice();
 
     // add dots
     svg.append('g')
@@ -57,6 +61,15 @@
     //     .attr("x", function (d) { return x_scale(d[0]); } )
     //     .attr("y", function (d) { return y_scale(d[1]); } )
     //     .text((d) => { return '' + d[0] + ',' + d[1] })
+
+    // Add scales to axis
+    var x_axis = d3.axisBottom()
+                   .scale(x_scale);
+
+    //Append group and insert axis
+    svg.append("g")
+       .attr("transform", "translate(0, " + (height - 40) +")")
+       .call(x_axis);
 
 </script>
 
